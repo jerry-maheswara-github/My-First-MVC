@@ -5,3 +5,6 @@ Ini adalah MVC Pertama Gue...
 Selamat mencoba...
 
 
+git add README
+git commit -m '3nd commit'
+git push -u origin master
