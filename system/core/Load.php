@@ -1,0 +1,39 @@
+<?php
+
+namespace system\core;
+
+class Load
+{
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	public function view($name,array $vars = null)
+	{
+		$file = APP_PATH.'views/'.$name.EXT;
+		if(is_readable($file)){
+			if(isset($vars)){
+				extract($vars);
+			}
+			require($file);
+			return true;
+		}
+		echo "$name Error View";
+		// throw new Exception('View issues');
+	}	
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	public function model($name){
+		// $model = $name.'Model';
+		$modelPath = APP_PATH.'models/'.$name.EXT;
+		if(is_readable($modelPath)){
+			require_once($modelPath);
+			if(class_exists($name)){
+				$registry = Controller::getInstance();
+				$registry->$name = new $name;
+				return true;
+			}
+		}
+		echo('Model issues.');	
+	}	
+}

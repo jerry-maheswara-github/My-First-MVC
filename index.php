@@ -13,14 +13,27 @@ define('EXT', '.php');
 
 require_once(APP_PATH . rtrim(APP_PATH,'/') . '.inc'.EXT);
 
+$uri = explode("/", $_SERVER['REQUEST_URI']);
+$uri = array_filter($uri);
+ 
+if(empty($uri[1]))
+{
+	$uri[1] = index;
+	$obj = str_replace('/','\\', $application_folder.'controllers\\' . $uri[1]);
+	$i = new $obj($uri[1],$uri[2]);
+	$i->dispatch();
+}
+
+else
+{
+	$obj = str_replace('/','\\', $application_folder.'controllers\\' . $uri[1]);
+	if (class_exists($obj))
+	{
+		$i = new $obj($uri[1],$uri[2]);
+		$i->dispatch();
+	}
+}
+
+
 // echo "<pre>". print_r(get_included_files(),1) . " <br>";
 
-// echo "__DIR__  : ". __DIR__  ."<br>";
-// echo "__FILE__ : ". __FILE__ ."<br>";
-
-
-use application\controllers\welcome;
-
-$w = new Welcome;
-
-// $w->coba();
