@@ -1,0 +1,38 @@
+<NotepadPlus>
+    <Project name="My-First-MVC">
+        <Folder name="application">
+            <Folder name="controllers">
+                <File name="application\controllers\index.php" />
+                <File name="application\controllers\welcome.php" />
+            </Folder>
+            <Folder name="models">
+                <File name="application\models\models.php" />
+            </Folder>
+            <Folder name="views">
+                <File name="application\views\footer.php" />
+                <File name="application\views\header.php" />
+                <File name="application\views\test.php" />
+                <File name="application\views\utama.php" />
+                <File name="application\views\welcome.php" />
+            </Folder>
+            <File name="application\application.inc.php" />
+        </Folder>
+        <Folder name="system">
+            <Folder name="config">
+                <File name="system\config\config.php" />
+            </Folder>
+            <Folder name="core">
+                <File name="system\core\Controller.php" />
+                <File name="system\core\Dispatcher.php" />
+                <File name="system\core\Init.php" />
+                <File name="system\core\Load.php" />
+                <File name="system\core\Model.php" />
+                <File name="system\core\Request.php" />
+            </Folder>
+            <File name="system\system.inc.php" />
+        </Folder>
+        <File name=".htaccess" />
+        <File name="index.php" />
+        <File name="README" />
+    </Project>
+</NotepadPlus>

@@ -160,4 +160,6 @@ function convertToRegex($str) {
 }
 echo BR;
 echo convertToRegex("http://1st.mvc/index/welcome/back/home/as/2010/blabla.html");
+
+
  

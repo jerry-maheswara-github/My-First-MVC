@@ -12,5 +12,8 @@ git add README
 git commit -m '3nd commit'
 git push -u origin master
 
+
+Test Perubahan dari device yang berbeda.
+
 //===============================================================//
 //===============================================================//
