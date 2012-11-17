@@ -9,7 +9,7 @@ class Index extends Controller
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
-	function utama()
+	function main()
 	{
 		// echo "<pre>";
 		// echo "__CLASS__          : ". __CLASS__ . "<br>";
@@ -17,14 +17,22 @@ class Index extends Controller
 		// echo "get_parent_class() : ". get_parent_class() . "<br>";
 		// echo "__METHOD__         : ". print_r(__METHOD__,1) ."</pre><hr>";
 		$data['message']= __METHOD__;
-		$this->load->view('default',$data);
+		// $data['link'] = "<a href=index.html>Index</a>";
+
+		$this->load->view('utama', $data);
 	}
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	function welcome()
 	{
+		$key = "gimana ya";
 		$data['nama']='Jerry Maheswara';
+		$data['kunci']=$key;
+		$data['param']=$url[3];
+		$data['message']= __METHOD__;
+
+		/////eksekusi disini
  		$this->load->view('welcome',$data);
 
 	}

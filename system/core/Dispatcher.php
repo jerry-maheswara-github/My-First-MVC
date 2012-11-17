@@ -5,10 +5,9 @@ namespace system\core;
 
 class Dispatcher
 { 
-	public static function dispatch()
+	public static function match($key, $value)
 	{
 
-
-  }
+  	}
 }
  

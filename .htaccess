@@ -6,18 +6,48 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
- 
+
 RewriteRule ^.*$ index.php [L,NC]
 RewriteRule ^/?([^/]*\.html?|[^\./]*)[:;,\.]*$ - [L,NC]
 
- 
-# ini punya JREAM QSA = Query String Append
+###########################
+###########################
+# Flag Meaning:
+#
+# [L]   = Last
+# [NC]  = No Case Sensitive
+# [QSA] = Query String Append
+# [R]   = Redirect
+# [PT]  = Passthrough
+# [NS]  = No Sub Request
+# 
+# 
+# 
+# 
+# http://httpd.apache.org/docs/current/rewrite/flags.html
+###########################
+###########################
 
-# RewriteRule ^(.+)$ index.php?url=$1 [QSA,L
+
+###########################
+# ini punya JREAM QSA = Query String Append
+# RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+###########################
 
 
 
 ###########################
 # ini punya Jontyy
+# RewriteRule ^(.+)$ /index.php/$1
+###########################
 
-#RewriteRule ^(.+)$ /index.php/$1
+
+
+############################
+## ini punya Sammy / ScoobyDooobyD00
+#RewriteEngine On
+#RewriteBase / 
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule (.*) index.php/$1
+############################

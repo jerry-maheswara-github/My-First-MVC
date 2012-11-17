@@ -10,7 +10,7 @@ class Welcome extends Controller
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
-	function utama()
+	function main()
 	{
 		// echo "<pre>";
 		// echo "__CLASS__          : ". __CLASS__ . "<br>";
@@ -18,7 +18,9 @@ class Welcome extends Controller
 		// echo "get_parent_class() : ". get_parent_class() . "<br>";
 		// echo "__METHOD__         : ". print_r(__METHOD__,1) ."</pre><hr>";
 		$data['message']= __METHOD__;
-		$this->load->view('default',$data);
+		$data["link"] = array("<a href=welcome/back.html>back</a>",
+			"<a href=/welcome/test.html>test</a>");
+		$this->load->view('utama',$data);
 	}
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
@@ -26,6 +28,13 @@ class Welcome extends Controller
 	function back()
 	{
 		$data['nama']='Welcome Back';
+		$data['message']= __METHOD__;
  		$this->load->view('welcome',$data);
+	}
+
+	function test()
+	{
+		$data['message']= __METHOD__;
+		$this->load->view('test', $data);
 	}
 }

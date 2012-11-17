@@ -1,24 +1,57 @@
 <?php
 
 namespace application;
-
-require_once(BASE_PATH . rtrim(BASE_PATH,'/') . '.inc'.EXT);
+use Exception;
+use system\core\controller;
 
 function load_application($namespace) // ini fungsinya sama dengan __autoload
 {
-	$namespace = strtolower($namespace);
-	while($namespace[0] === '\\') {
-		$namespace = substr($namespace, 1);
-	}
-
-	if(strpos($namespace, __NAMESPACE__) === 0) {
-		$path = __DIR__ . '/' . str_replace('\\', '/', 
-			substr($namespace, strlen(__NAMESPACE__) + 1)) . '.php';
-		if(@file_exists($path))
+	try
+	{
+		$namespace = strtolower($namespace);
+		$namespace = ltrim($namespace,BS);
+		$path = __DIR__.DS.str_replace(BS, DS, substr($namespace, strlen(__NAMESPACE__) + 1)) . EXT;
+		// echo $path .BR ;
+		if(@file_exists($path)) 
+		{
 			include $path;
-		else
-			echo "<h1>Error 404 - ". substr($namespace, strlen(__NAMESPACE__) + 1) . " not exist!</h1>";
+		}
+		else 
+		{
+			throw new Exception("<b>Error: <font color=red>". $namespace . "</font> not exist!</b>", 1);
+		}
+	}		
+	catch(Exception $e){
+		echo BR.$e->getMessage(); 
+		Controller::jump("/index.html");
 	}
 }
 
-spl_autoload_register(__NAMESPACE__ . '\load_application');
+spl_autoload_register(__NAMESPACE__ .BS. 'load_application');
+
+
+
+
+/* 
+
+__autoload = untuk single autoloader;
+spl_autoload_register = lebih dinamis karena bisa untuk banyak autoload;
+
+contoh: 
+//------------------------------------------//
+//------------------------------------------//
+function __autoload_libraries($class){
+    include_once 'lib.'.$class.'.php';
+}
+spl_autoload_register('__autoload_libraries');
+
+//------------------------------------------//
+//------------------------------------------//
+
+function __autoload($class){
+    include_once 'lib.'.$class.'.php';
+}
+//------------------------------------------//
+//------------------------------------------//
+
+*/

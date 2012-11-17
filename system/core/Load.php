@@ -7,17 +7,21 @@ class Load
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
-	public function view($name,array $vars = null)
+	public function view($name, array $vars = null)
 	{
-		$file = APP_PATH.'views/'.$name.EXT;
+		$head = APP_PATH.'views'.DS."header".EXT;
+		$file = APP_PATH.'views'.DS.$name.EXT;
+		$foot = APP_PATH.'views'.DS."footer".EXT;
 		if(is_readable($file)){
 			if(isset($vars)){
 				extract($vars);
 			}
+			require($head);
 			require($file);
+			require($foot);
 			return true;
 		}
-		echo "$name Error View";
+		echo "<h1>$name method Error View</h1><hr>";
 		// throw new Exception('View issues');
 	}	
 	//////////////////////////////////////////////////////////////////////////
@@ -25,7 +29,7 @@ class Load
 	//////////////////////////////////////////////////////////////////////////
 	public function model($name){
 		// $model = $name.'Model';
-		$modelPath = APP_PATH.'models/'.$name.EXT;
+		$modelPath = APP_PATH.'models'.DS.$name.EXT;
 		if(is_readable($modelPath)){
 			require_once($modelPath);
 			if(class_exists($name)){
