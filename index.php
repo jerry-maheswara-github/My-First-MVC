@@ -111,35 +111,7 @@ echo "<hr>REQUEST_METHOD =  <font color=red>". getRequestMethod() ."</font>";
 
 echo ltrim("\\\halo","\\");
 
-// function jajal(){
-// 	try{
-// 		@$total = 100/0;
-// 		if(! $total){
-// 			throw new Exception("Salah melakukan pembagian", 1);
-			
-// 		}	
-// 	}
-// 	catch(Exception $e){
-// 		echo "<pre>Terjadi Kesalahan:<br>";
-// 		echo "<br>getFile : ". $e->getFile();
-// 		echo "<br>getLine: ". $e->getLine();
-// 		echo "<br>getCode : ". $e->getCode();
-// 		echo "<br>getMessage: ". $e->getMessage(); 
-// 		echo "<br>getfunction: ". $e->getTraceAsString(); 
-// 		// echo "<hr>getTrace: ". var_dump($e->getTrace()); 
-// 	}
-// }
-// jajal();
 
-// function jajal1()
-// {
-// 	@$total = 100/0;
-// 	if(! $total){
-// 		throw new Exception("Salah melakukan pembagian", 1);
-// 	}
-
-// }
-// jajal1();
  
 
 function convertToRegex($str) {
