@@ -1,6 +1,6 @@
 <?php
 
-namespace system\core; 
+namespace system\libs; 
 
 class Request{
 	
@@ -11,13 +11,14 @@ class Request{
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	public function __construct(){
-		$parts = explode('/',$_SERVER['REQUEST_URI']);
+
+		$parts = explode('/', URL);
 		$parts = array_filter($parts);
 
-		echo "<pre>".print_r($parts,1) ."</pre>";
+		// echo "<pre>".print_r($parts,1) ."</pre>";
 		$this->_controller = ($c = array_shift($parts))? $c : 'index';
-		$this->_method     = ($c = array_shift($parts))? $c : 'index';
-		$this->_args       = (isset($parts[0])) ? $parts : array();
+		$this->_method     = ($c = array_shift($parts))? $c : 'main';
+		$this->_args       = (isset($parts[0])) ? $parts :  array();
  
 	}
 	//////////////////////////////////////////////////////////////////////////

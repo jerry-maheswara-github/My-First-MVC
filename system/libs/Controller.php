@@ -1,6 +1,6 @@
 <?php
-namespace system\core;
-use system\core\load;
+namespace system\libs;
+use system\libs\load;
 
 class Controller
 { 
@@ -40,7 +40,7 @@ class Controller
 		}
 		else
 		{
-			die ("<meta http-equiv='refresh' content='10;URL=".$page."'>");
+			die ("<meta http-equiv='refresh' content='1;URL=".$page."'>");
 		}
 	}
  

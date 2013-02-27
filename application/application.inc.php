@@ -2,7 +2,7 @@
 
 namespace application;
 use Exception;
-use system\core\controller;
+use system\libs\controller;
 
 function load_application($namespace) // ini fungsinya sama dengan __autoload
 {
@@ -11,7 +11,6 @@ function load_application($namespace) // ini fungsinya sama dengan __autoload
 		$namespace = strtolower($namespace);
 		$namespace = ltrim($namespace,BS);
 		$path = __DIR__.DS.str_replace(BS, DS, substr($namespace, strlen(__NAMESPACE__) + 1)) . EXT;
-		// echo $path .BR ;
 		if(@file_exists($path)) 
 		{
 			include $path;
@@ -22,7 +21,7 @@ function load_application($namespace) // ini fungsinya sama dengan __autoload
 		}
 	}		
 	catch(Exception $e){
-		echo BR.$e->getMessage(); 
+		// echo BR.$e->getMessage(); 
 		Controller::jump("/index.html");
 	}
 }

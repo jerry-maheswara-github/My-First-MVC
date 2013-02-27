@@ -25,3 +25,4 @@ function getCurrentUri() {
 echo "<h1>getCurrentUri = ".getCurrentUri();
 echo "</h1>";
 echo "<h2>$message</h2>";
+echo BR;

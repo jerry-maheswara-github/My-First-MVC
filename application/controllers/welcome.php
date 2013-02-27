@@ -1,7 +1,7 @@
 <?php
 
 namespace application\controllers;
-use system\core\controller;
+use system\libs\controller;
 
 
 class Welcome extends Controller
@@ -32,9 +32,9 @@ class Welcome extends Controller
  		$this->load->view('welcome',$data);
 	}
 
-	function test()
+	function test($_args = array())
 	{
-		$data['message']= __METHOD__;
+		$data['message']= __METHOD__ . $_args[0];
 		$this->load->view('test', $data);
 	}
 }

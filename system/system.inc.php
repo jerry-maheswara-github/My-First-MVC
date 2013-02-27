@@ -3,6 +3,7 @@
 namespace system;
 use Exception;
 
+
 function load_system($namespace)
 {
 	try
