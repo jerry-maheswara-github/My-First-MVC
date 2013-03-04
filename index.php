@@ -12,7 +12,19 @@ new Init();
 *
 */
 
-echo "<pre>". print_r(get_included_files(),1);
 
+echo "<hr color=blue size=3>";
  
-echo URL;
+// use system\libs\model;
+// $xx = new Model();
+
+print_r(get_included_files());
+
+
+// $xx -> run();
+
+
+// use system\libs\dispatcher;
+// // $ax = new Dispatcher(); 
+// $uri = Dispatcher::getURI();
+ 

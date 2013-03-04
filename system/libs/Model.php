@@ -1,35 +1,33 @@
 <?php
 
 namespace system\libs;
+use system\libs\database;
 
 class Model
 {
-	public function foo()
-  {
-    echo __METHOD__ . PHP_EOL;
+
+
+  function __construct() {
+    $this->db = new Database();
+
+    // echo '<pre>';
+    // print_r($this);
   }
 
-	
-  public function __call($method, $args)
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// ntar pindahin ke model turunannya aja ////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+  public function run()
   {
-    if(method_exists($this, $method))
-    {
-			$this->$method();
-			echo __METHOD__ . PHP_EOL;
-    }
-    else
-    {
-    	echo "<hr>$method belum terdaftar sebagai fungsi / method";
-    }
+    $sth = $this->db->prepare("SELECT * FROM users ");
+    $sth->execute();
+    
+    $data = $sth->fetchAll();
+
+    print_r($data);
+    
   }
 
-  // public static function __callStatic($name, $arguments)
-  // {
-  //   return implode(', ', $arguments);
-  // }
-
-  public function dispatch($method)
-	{ 
-			return $method; // nah fungsi dipanggil disini 
-	}
 }

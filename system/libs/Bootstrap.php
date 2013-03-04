@@ -1,21 +1,23 @@
 <?php
 
 namespace system\libs;
-use system\libs\request;
 
+// class Bootstrap extends Request{
 class Bootstrap{
 
 	function __construct()
 	{
+
+		Dispatcher::hajar();
+
 		$a = new Request();
-		$ctrl = $a->getController();
-		$metd = $a->getMethod();
-		$args = $a->getArgs();
 
-		$obj = str_replace(DS,BS, APP_PATH .'controllers'.BS . $ctrl);
-		$i = new $obj($ctrl,$metd);
-		$i->dispatch();
+		$a -> controller = 'cont';
+		$a -> method = 'meth';
+		
 
+		echo $a->controller;
+		echo $a->method;
 	}
 
 }

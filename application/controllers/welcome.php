@@ -18,7 +18,7 @@ class Welcome extends Controller
 		// echo "get_parent_class() : ". get_parent_class() . "<br>";
 		// echo "__METHOD__         : ". print_r(__METHOD__,1) ."</pre><hr>";
 		$data['message']= __METHOD__;
-		$data["link"] = array("<a href=welcome/back.html>back</a>",
+		$data["link"] = array("<a href=/welcome/back.html>back</a>",
 			"<a href=/welcome/test.html>test</a>");
 		$this->load->view('utama',$data);
 	}
