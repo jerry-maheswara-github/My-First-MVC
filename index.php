@@ -6,25 +6,12 @@ new Init();
 
 /**
 *
-*
-*
-*
-*
 */
-
 
 echo "<hr color=blue size=3>";
  
-// use system\libs\model;
-// $xx = new Model();
-
-print_r(get_included_files());
-
-
+use system\libs\model;
+$xx = new Model();
 // $xx -> run();
 
-
-// use system\libs\dispatcher;
-// // $ax = new Dispatcher(); 
-// $uri = Dispatcher::getURI();
- 
+print_r(get_included_files());

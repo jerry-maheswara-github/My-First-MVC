@@ -2,7 +2,6 @@
 
 namespace application;
 use Exception;
-use system\libs\controller;
 
 function load_application($namespace) // ini fungsinya sama dengan __autoload
 {
@@ -17,12 +16,13 @@ function load_application($namespace) // ini fungsinya sama dengan __autoload
 		}
 		else 
 		{
-			throw new Exception("<b>Error: <font color=red>". $namespace . "</font> not exist!</b>", 1);
+			// throw new Exception("<b>Error: <font color=red>". $namespace . "</font> not exist!</b>", 1);
 		}
 	}		
 	catch(Exception $e){
-		// echo BR.$e->getMessage(); 
-		Controller::jump("/index.html");
+		echo BR.$e->getMessage(); 
+		// header("Location:index.html");
+		// die ("<meta http-equiv='refresh' content='1;URL=index.html'>");
 	}
 }
 

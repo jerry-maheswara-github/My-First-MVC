@@ -3,103 +3,44 @@
 namespace system\libs; 
 
 class Request{
-	
-	private $_controller;
-	private $_method;
-	// private $_args;
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	// public function __construct(){
 
-	// 	// $parts = explode('/', URL);
-	// 	// $parts = array_filter($parts);
+	public function __call($name, $arguments) {
+		$methodPrefix = substr($name, 0, 4);
+		$property = substr($name,4);
+		$rURL  = parse_url($arguments[0], 5); // 5 = PHP_URL_PATH
+		$rQS   = parse_url($arguments[0], 6); // 6 = PHP_URL_QUERY or 7 = PHP_URL_FRAGMENT
+		$level = $arguments[1];
 
-	// 	// echo "<pre>".print_r($parts,1) ."</pre>";
-	// 	// $this->_controller = ($c = array_shift($parts))? $c : 'index';
-	// 	// $this->_method     = ($c = array_shift($parts))? $c : 'main';
-	// 	// $this->_args       = (isset($parts[0])) ? $parts :  array();
- 
-	// }
-
-
-
-	protected $members = array();
-
-    public function __get($arg) {
-        if (array_key_exists($arg, $this->members)) {
-        	echo 'Getting'.BR;
-            return ($this->members[$arg]);
-        } else { return ("No such luck!\n"); }
-    }
-
-    public function __set($key, $val) {
-        $this->members[$key] = $val;
-    }
-
-
-    // public function __isset($arg) {
-    //     return (isset($this->members[$arg]));
-    // }
- 
-
-
-
-
-
-
-
-
-
-	public function setController($parts, $arg='index'){
-		if (isset($parts)){
-			$a = explode('/', Dispatcher::getURI());
-			$value = array_shift(array_slice($a,1,1));
-			if (empty($value)){
-				$this->_controller = $arg;
+		if ($methodPrefix=='set_'){
+			if (substr($rURL, -5) == ".html"){
+				$trimmed = str_replace(".html", "", $rURL); // buang .html dari URL
+				$a = explode('/', rawurldecode($trimmed));
 			}
 			else{
-				$this->_controller = $value;
-			} 
-		}
-	}
-
-
-	public function setMethod($parts, $arg='main'){
-		if (isset($parts)){
-			$a = explode('/', Dispatcher::getURI());
-			$value = array_shift(array_slice($a,2,1));
-			if (empty($value)){
-				$this->_method = $arg;
+				$a = explode('.', rawurldecode($rURL)); // buang semua setelah . (titik) dari URL
+				$a = explode('/', $a[0]);
+			}
+			$a = array_filter($a); //// buang array yg kosong
+			if ($level == 1){
+				($value = array_shift(array_slice($a,0,1))) ?: $value='index';
+			}
+			else if($level == 2){
+				($value = array_shift(array_slice($a,1,1))) ?: $value='main';
+			}
+			else if($level === 3){
+				$value = array_slice($a,2);
 			}
 			else{
-				$this->_method = $value;
-			} 
+				echo $name . '($value, 1,2,3 saja)';
+			}
+
+            $this->$property = $value;
 		}
-	}
+		else if ($methodPrefix=='get_'){
+			return $this->$property ;
+		}
 
-	// public function setArgs($arg=''){
-	// 	$this->_args = $arg;
-	// }
-
-
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	public function getController(){
-		return $this->_controller;
+		
 	}
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	public function getMethod(){
-		return $this->_method;
-	}
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////
-	// public function getArgs(){
-	// 	return $this->_args;
-	// }
- 
+	 
 }

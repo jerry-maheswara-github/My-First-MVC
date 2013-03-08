@@ -8,7 +8,7 @@ class Init
 	{
 		define('ABS', 'http://1st.com/');
 		define('DS', DIRECTORY_SEPARATOR); 
-		define('SP', "&nbsp;");
+		define('SP', "&nbsp;"); // spasi
 		define('HR', "<hr>");
 		define('BR', "<br>");
 		define('BS', chr(92)); // backslash 
@@ -34,7 +34,7 @@ class Init
 		/////////////////////////////////////////////////////////////
 
 		new Bootstrap;
-		new Model;
+		// new Model;
 
   	}
 }

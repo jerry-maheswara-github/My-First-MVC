@@ -2,6 +2,7 @@
 
 namespace application\controllers;
 use system\libs\controller;
+use system\libs\request;
 
 
 class Index extends Controller
@@ -19,7 +20,7 @@ class Index extends Controller
 		$data['message']= __METHOD__;
 		// $data['link'] = "<a href=index.html>Index</a>";
 
-		$this->load->view('utama', $data);
+		$this->load->view('main', $data);
 	}
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
@@ -27,12 +28,18 @@ class Index extends Controller
 	function welcome()
 	{
 		$key = "gimana ya";
-		$data['nama']='Jerry Maheswara';
+		$data['header']='\'welcome\' sebagai Method';
 		$data['kunci']=$key;
 		$data['param']=$url[3];
 		$data['message']= __METHOD__;
 
-		/////eksekusi disini
+		$x = new Request;
+		$x -> set_arg(URI,3);
+		$_args = $x->arg;
+
+		$data['arg'] = $_args ;// . $_GET[nama];
+
+		// eksekusi disini
  		$this->load->view('welcome',$data);
 
 	}

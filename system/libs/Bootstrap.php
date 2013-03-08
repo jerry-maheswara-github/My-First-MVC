@@ -7,18 +7,16 @@ class Bootstrap{
 
 	function __construct()
 	{
+		$s = new Request;
+		$s -> set_con(URI,1);
+		$s -> set_fun(URI,2);
+		$s -> set_arg(URI,3);
 
-		Dispatcher::hajar();
+		Dispatcher::passRequest($s->con,$s->fun,$s->arg);
 
-		$a = new Request();
+		// print_r($s);
 
-		$a -> controller = 'cont';
-		$a -> method = 'meth';
-		
-
-		echo $a->controller;
-		echo $a->method;
-	}
+ 	}
 
 }
 
