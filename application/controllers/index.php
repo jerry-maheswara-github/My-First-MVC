@@ -3,6 +3,7 @@
 namespace application\controllers;
 use system\libs\controller;
 use system\libs\request;
+use system\config\header;
 
 
 class Index extends Controller
@@ -12,6 +13,7 @@ class Index extends Controller
 	//////////////////////////////////////////////////////////////////////////
 	function main()
 	{
+		// new HelperHTML;
 		// echo "<pre>";
 		// echo "__CLASS__          : ". __CLASS__ . "<br>";
 		// echo "get_called_class() : ". get_called_class() . "<br>";
@@ -19,16 +21,32 @@ class Index extends Controller
 		// echo "__METHOD__         : ". print_r(__METHOD__,1) ."</pre><hr>";
 		$data['message']= __METHOD__;
 		// $data['link'] = "<a href=index.html>Index</a>";
+		$data['gambar'] = $this->html->img('me.jpg');
+		
+		// array(
+		// 	  $this->html->anchor(ABS.'/index', 'Index')
+		// 	, $this->html->anchor(ABS.'/index/welcome', '/index/welcome')
+		// 	, $this->html->anchor(ABS.'/index/welcome/back', '/index/welcome/back')
+		// 	, $this->html->anchor(ABS.'/index/welcome/back/space', '/index/welcome/back/space')
+		// 	, $this->html->anchor(ABS.'/index/welcome/back/space/invander', '/index/welcome/back/space/invander')
+		// 	, $this->html->anchor(ABS.'/welcome', '/welcome')
+		// 	, $this->html->anchor(ABS.'/welcome/index', '/welcome/index')
+		// 	);
+
+
 
 		$this->load->view('main', $data);
+		// $this->load->helper('Helperhtml');
+		// $this->Helperhtml->img('me.jpg');
 	}
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	function welcome()
 	{
+		$data['gambar'] = $this->html->img('me.jpg');
 		$key = "gimana ya";
-		$data['header']='\'welcome\' sebagai Method';
+		$data['header']= '\''.__FUNCTION__.'\' sebagai Method';
 		$data['kunci']=$key;
 		$data['param']=$url[3];
 		$data['message']= __METHOD__;

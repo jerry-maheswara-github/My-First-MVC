@@ -1,7 +1,7 @@
 <?php
 
 namespace system\libs;
-use system\libs\database;
+// use system\libs\database;
 
 class Model
 {

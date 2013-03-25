@@ -1,34 +1,16 @@
 <?php
 
 namespace application;
-use Exception;
 
-function load_application($namespace) // ini fungsinya sama dengan __autoload
+function load_application($namespace) 
 {
-	try
-	{
-		$namespace = strtolower($namespace);
-		$namespace = ltrim($namespace,BS);
-		$path = __DIR__.DS.str_replace(BS, DS, substr($namespace, strlen(__NAMESPACE__) + 1)) . EXT;
-		if(@file_exists($path)) 
-		{
-			include $path;
-		}
-		else 
-		{
-			// throw new Exception("<b>Error: <font color=red>". $namespace . "</font> not exist!</b>", 1);
-		}
-	}		
-	catch(Exception $e){
-		echo BR.$e->getMessage(); 
-		// header("Location:index.html");
-		// die ("<meta http-equiv='refresh' content='1;URL=index.html'>");
-	}
+	$namespace = ltrim(strtolower($namespace),BS);
+	$path = __DIR__.DS.str_replace(BS, DS, substr($namespace, strlen(__NAMESPACE__) + 1)) . EXT;
+	(@file_exists($path)) ? include $path : die('<meta http-equiv=\'refresh\' content=\'0;URL='.HOME.'\'>');
 }
 
+// ini fungsinya sama dengan __autoload
 spl_autoload_register(__NAMESPACE__ .BS. 'load_application');
-
-
 
 
 /* 

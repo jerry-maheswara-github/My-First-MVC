@@ -1,7 +1,7 @@
 <?php
 
 namespace application\models;
-use system\core\model;
+use system\libs\model;
 
 class Models extends Model
 {

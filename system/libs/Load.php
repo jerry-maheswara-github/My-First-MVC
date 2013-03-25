@@ -9,9 +9,9 @@ class Load
 	//////////////////////////////////////////////////////////////////////////
 	public function view($name, array $vars = null)
 	{
-		$head = APP_PATH.'views'.DS."header".EXT;
-		$file = APP_PATH.'views'.DS.$name.EXT;
-		$foot = APP_PATH.'views'.DS."footer".EXT;
+		$head = APP_PATH.DS.'views'.DS."header".EXT;
+		$file = APP_PATH.DS.'views'.DS.$name.EXT;
+		$foot = APP_PATH.DS.'views'.DS."footer".EXT;
 		if(is_readable($file)){
 			if(isset($vars)){
 				extract($vars);
@@ -27,17 +27,13 @@ class Load
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
-	public function model($name){
-		// $model = $name.'Model';
-		$modelPath = APP_PATH.'models'.DS.$name.EXT;
-		if(is_readable($modelPath)){
-			require_once($modelPath);
-			if(class_exists($name)){
-				$registry = Controller::getInstance();
-				$registry->$name = new $name;
-				return true;
-			}
-		}
-		echo('Model issues.');	
-	}	
+    public function helper($helper) {
+    	echo SYS_PATH.DS."helpers/".$helper.".php";
+        if (file_exists(SYS_PATH.DS."helpers/".$helper.EXT)){
+            require_once SYS_PATH.DS."helpers/".$helper.EXT;
+            $this->$helper = new $helper;
+        }else{
+            echo 'Error Helper...!!!';
+        }
+    }
 }

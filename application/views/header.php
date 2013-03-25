@@ -1,14 +1,22 @@
 <?php
 
-echo "<hr>";
+use application\config\header;
 
-echo "<a href=/index.html>Index</a> 
-| <a href=/index/welcome.html>index/welcome</a> 
-| <a href=/index/welcome/back.html>index/welcome/back</a> 
-| <a href=/index/welcome/back/space.html>index/welcome/back/space</a> 
-| <a href=/index/welcome/back/space/invander.html>index/welcome/back/space/invander</a> 
-| <a href=/welcome.html>Welcome</a>
-| <a href=/welcome/index.html>Welcome/index</a>" ;
+$he =  new Header;
+$ha =  $he->hajar();
 
-echo "<hr>";
+echo HR;
+
+if (is_array($ha))
+{
+	$i = 0;
+	foreach($ha as $item){
+		$i += 1;
+		echo $item;
+		if($i < count($ha)){ echo " | ";}
+	}
+}
+echo HR;
+echo $gambar;
+
 ?>
